@@ -1,21 +1,25 @@
-import css from "./ContactForm.module.css";
-import { useId } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import * as Yup from "yup";
+import { nanoid } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast";
 
-const ContactSchema = Yup.object().shape({
+import css from "./ContactForm.module.css";
+import { apiAddUserContact } from "../../redux/contacts/operations";
+
+const ContactsBoxSchema = Yup.object().shape({
   name: Yup.string()
-    .min(3, "User name must be at least 3 characters long!")
-    .max(50, "User name must be less 50 characters long!")
-    .required("Please, enter your name! This field is required!"),
+    .min(3, "Too short!")
+    .max(50, "Too long!")
+    .required("Required!"),
   number: Yup.string()
-    .matches(/^\d{3}-\d{2}-\d{2}$/, {
-      message: "Please, enter the correct phone number: 999-99-99!",
-      excludeEmptyString: false,
-    })
-    .required("Please, enter your phone number! This field is required!"),
+    // .matches(/^\d{3}-\d{2}-\d{2}$/, {
+    //   message: 'Invalid number',
+    //   excludeEmptyString: false,
+    // })
+    .min(3, "Too short!")
+    .max(50, "Too long!")
+    .required("Required!"),
 });
 
 const initialValues = {
@@ -24,47 +28,61 @@ const initialValues = {
 };
 
 const ContactForm = () => {
-  const nameFieldId = useId();
-  const numberFieldId = useId();
   const dispatch = useDispatch();
 
+  const onAddContacts = (contactData) => {
+    const contactFinalData = {
+      ...contactData,
+      id: nanoid(),
+    };
+    dispatch(apiAddUserContact(contactFinalData));
+  };
+
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+    onAddContacts(values);
+    toast.success("Contact was added successfully");
     actions.resetForm();
   };
 
   return (
     <Formik
+      validationSchema={ContactsBoxSchema}
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={ContactSchema}
     >
-      <Form className={css.form}>
-        <div className={css.label}>
-          <label htmlFor={nameFieldId}>Name</label>
+      <Form className={css.contactForm}>
+        <label className={css.labelForm}>
+          <span className={css.labelText}>Name</span>
           <Field
-            className={css.input}
+            className={css.formField}
+            placeholder="Anna Rychkova"
             type="text"
             name="name"
-            placeholder="Jack Wilson"
-            id={nameFieldId}
           />
-          <ErrorMessage className={css.error} name="name" component="div" />
-        </div>
+          <ErrorMessage
+            className={css.errorMessage}
+            name="name"
+            component="span"
+          />
+        </label>
 
-        <div className={css.label}>
-          <label htmlFor={numberFieldId}>Number</label>
+        <label className={css.labelForm}>
+          <span className={css.labelText}>Number</span>
           <Field
-            className={css.input}
-            type="tel"
+            className={css.formField}
+            placeholder="097-123-45-67"
+            type="text"
             name="number"
-            placeholder="999-99-99"
-            id={numberFieldId}
           />
-          <ErrorMessage className={css.error} name="number" component="div" />
-        </div>
-        <button className={css.btn} type="submit">
-          Add Contact
+          <ErrorMessage
+            className={css.errorMessage}
+            name="number"
+            component="span"
+          />
+        </label>
+
+        <button className={css.formButton} type="submit">
+          Add contact
         </button>
       </Form>
     </Formik>

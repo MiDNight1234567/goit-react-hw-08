@@ -1,42 +1,138 @@
-.contactCard {
+.contactInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
-  padding: 10px;
+}
+
+.contactData {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.contactInfoItem {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin-left: 12px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 6px;
+}
+
+.functionalButton {
+  padding: 8px;
+  height: 42px;
   border-radius: 8px;
-  border: 1px solid #d7d8db;
-  background-color: #eeeff3;
-  transition: box-shadow 0.3s ease-in-out;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background-color: transparent;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
 }
 
-.contactCard:hover {
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+.functionalButton:hover {
+  background-color: var(--primary-color);
 }
 
-.cardIcon {
-  vertical-align: middle;
-  color: hsl(216, 2%, 53%);
-  margin-right: 10px;
+.functionalButton:focus {
+  background-color: transparent;
 }
 
-.cardText {
-  font-size: 20px;
-  font-weight: 500;
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(103, 97, 88);
+  color: var(--second-color);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 6px 10px rgba(123, 107, 88, 0.95),
+    -8px 6px 16px rgba(199, 190, 185, 0.95),
+    8px 6px 16px rgba(199, 190, 185, 0.95);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 18px;
 }
 
-.contactCardBtn {
-  font-size: 16px;
-  width: 70px;
-  height: 35px;
-  border-radius: 4px;
-  background-color: #afb2b8;
-  transition: background-color 0.3s ease-in-out;
+.closeModalBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 20px;
+  transition: all 0.3s;
 }
 
-.contactCardBtn:hover,
-.contactCardBtn:focus {
-  background-color: hsl(216, 2%, 53%);
+.closeModalBtn:hover {
+  background-color: transparent;
+}
+
+.closeModalBtn:hover .closeIcon {
+  color: var(--accent-color);
+  scale: 1.2;
+}
+
+.modalText {
+  color: var(--accent-color);
+}
+
+.contactDataModal {
+  display: flex;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 16px 8px;
+}
+
+.buttonContainerModal {
+  display: flex;
+  gap: 16px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modalBtn {
+  padding: 8px 16px;
+  color: var(--second-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.modalBtn:hover {
+  border: 1px solid var(--primary-color);
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 320px;
+}
+@media only screen and (max-width: 386px) {
+  .modalForm {
+    max-width: 320px;
+    width: 100%;
+  }
+}
+
+.modalInput {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 18px;
+  border: 2px solid var(--primary-color);
+  background-color: transparent;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modalInput:focus {
+  outline: none;
+  border: 2px solid var(--accent-color);
 }

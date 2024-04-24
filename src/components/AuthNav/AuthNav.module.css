@@ -1,0 +1,26 @@
+.authNav {
+  display: flex;
+  gap: 12px;
+}
+
+.authLink {
+  display: flex;
+  padding: 10px 20px;
+  color: var(--second-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.authLink:hover {
+  color: var(--primary-color);
+  background-color: var(--accent-color);
+  border: 1px solid var(--primary-color);
+}
+
+.active {
+  color: var(--second-color);
+  background-color: var(--accent-color);
+  border: 1px solid var(--primary-color);
+}

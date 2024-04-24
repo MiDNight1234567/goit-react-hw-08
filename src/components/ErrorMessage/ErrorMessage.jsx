@@ -1,11 +1,15 @@
+import { BiError } from "react-icons/bi";
 import css from "./ErrorMessage.module.css";
 
-const ErrorMessage = () => {
+const ErrorMessage = ({ message = "" }) => {
   return (
-    <div>
-      <h2 className={css.error}>
-        Whoops, something went wrong! Please try reloading this page!
-      </h2>
+    <div className={css.errorMessage}>
+      <BiError size={36} color="#ef5c0d" />
+      <p>
+        {message.length > 0
+          ? message
+          : "Whoops, something went wrong! Please try reloading this page!"}
+      </p>
     </div>
   );
 };

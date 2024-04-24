@@ -1,0 +1,21 @@
+.notFoundPage {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 18px;
+  padding-top: 100px;
+  line-height: 2.5;
+}
+
+.backHome {
+  margin: 50px auto;
+  padding: 12px 20px;
+  background-color: transparent;
+  border: 2px solid var(--second-color);
+  border-radius: 8px;
+  transition: all 0.3s;
+  background-color: rgba(159, 116, 67, 0.762);
+}
+
+.backHome:hover {
+  color: var(--primary-color);
+}

@@ -1,7 +1,14 @@
 :root {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.5;
-  color: hsl(0, 1%, 29%);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 15px;
+  font-family: sans-serif;
+  color: var(--second-color);
+  background-color: var(--primary-color);
+
+  --primary-color: #f9e3cc;
+  --second-color: #261605;
+  --accent-color: #f57a38;
 }
 
 h1,
@@ -16,15 +23,29 @@ p {
 
 ul,
 ol {
-  list-style-type: none;
-}
-
-button {
-  border: none;
-  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 img {
-  width: 100%;
   display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  display: block;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--accent-color);
 }
