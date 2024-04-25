@@ -55,7 +55,7 @@ const ContactForm = () => {
           <span className={css.labelText}>Name</span>
           <Field
             className={css.formField}
-            placeholder="Anna Rychkova"
+            placeholder="Anna Dubkova"
             type="text"
             name="name"
           />
